@@ -19,6 +19,10 @@ FS.FileWorker = {};
  */
 FS.FileWorker.observe = function(fsCollection) {
 
+  if (!process.env.CFS_WORKER) {
+    return true;
+  }
+
   // Initiate observe for finding newly uploaded/added files that need to be stored
   // per store.
   FS.Utility.each(fsCollection.options.stores, function(store) {
@@ -63,6 +67,7 @@ FS.FileWorker.observe = function(fsCollection) {
       });
     }
   });
+
 };
 
 /**
